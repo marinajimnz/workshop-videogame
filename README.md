@@ -6,5 +6,3 @@ Move through the map with the alien from the spaceship to the rainbow trying to 
 Will you beat your time record after finishing the last map? 
 
 You only have 3 lives.
-
-Give it a try!
