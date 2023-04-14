@@ -41,7 +41,7 @@ function setCanvasSize() {
     if (window.innerHeight > window.innerWidth) {
         canvasSize = window.innerWidth * 0.70;
     } else {
-        canvasSize = window.innerHeight * 0,70;
+        canvasSize = window.innerHeight * 0.70;
     }
     
     canvas.setAttribute('width' , canvasSize);
@@ -160,7 +160,7 @@ function gameWon() {
 }
 
 function setRecord() {
-    const record =localStorage.getItem('record');
+    const record = localStorage.getItem('record');
     const playerTime = Date.now() - timeStart;
     
     if(record) {
@@ -181,12 +181,26 @@ function showLives() {
 }
 
 function showTime() {
-    spanTime.innerHTML = Date.now() - timeStart;
+    let elapsedTime = Date.now() - timeStart;
+    let printTime = timeToChronometer(elapsedTime);
+    spanTime.innerHTML = printTime;
 }
 
 function showRecord() {
-    spanRecord.innerHTML = localStorage.getItem('record');
+    let bestRecord = Number(localStorage.getItem('record'));
+    let printRecord = timeToChronometer(bestRecord);
+    spanRecord.innerHTML = printRecord;
 }
+
+function timeToChronometer(milliseconds) {
+    let currentTime = new Date(milliseconds);
+    let ms = currentTime.getUTCMilliseconds();
+    let sec = currentTime.getUTCSeconds();
+    let min = currentTime.getUTCMinutes();
+    let hrs = currentTime.getUTCHours();
+
+    return `${hrs}:${min}:${sec}:${ms}`;
+  }
 
 
 //FUNCIONES DE BOTONES Y TECLAS
