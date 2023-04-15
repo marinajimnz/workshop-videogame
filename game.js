@@ -137,11 +137,14 @@ function levelUp() {
     startGame();
 }
 
+
 function levelFailed() {
     lives--;
     console.log('You crashed into an enemy!');
-
-    if (lives <= 0) {
+    console.log(emojis['BOMB_COLLISION'], playerPosition.x, playerPosition.y);
+    game.fillText(emojis['BOMB_COLLISION'], playerPosition.x, playerPosition.y);
+    
+    if (lives == 0) {
         level = 0;
         lives = 3;
         timeStart = undefined;
@@ -149,12 +152,12 @@ function levelFailed() {
     
     playerPosition.x = undefined;
     playerPosition.y = undefined;
+
     startGame();
 }
 
 function gameWon() {
     console.log('You WON!');
-    clearInterval(timeInterval);
 
     setRecord();
 }
@@ -174,6 +177,8 @@ function setRecord() {
         localStorage.setItem('record', playerTime);
         pResult.innerHTML = 'That was your 1st time, now beat your record! 💪🏽';
     }
+    
+    clearInterval(timeInterval);
 }
 
 function showLives() {
@@ -194,10 +199,10 @@ function showRecord() {
 
 function timeToChronometer(milliseconds) {
     let currentTime = new Date(milliseconds);
-    let ms = currentTime.getUTCMilliseconds();
-    let sec = currentTime.getUTCSeconds();
-    let min = currentTime.getUTCMinutes();
-    let hrs = currentTime.getUTCHours();
+    let ms = currentTime.getUTCMilliseconds().toString().slice(0,2).padStart(2, '0');
+    let sec = currentTime.getUTCSeconds().toString().padStart(2, '0');
+    let min = currentTime.getUTCMinutes().toString().padStart(2, '0');
+    let hrs = currentTime.getUTCHours().toString().padStart(2, '0');
 
     return `${hrs}:${min}:${sec}:${ms}`;
   }
