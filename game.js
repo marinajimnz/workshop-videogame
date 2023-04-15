@@ -141,7 +141,6 @@ function levelUp() {
 function levelFailed() {
     lives--;
     console.log('You crashed into an enemy!');
-    console.log(emojis['BOMB_COLLISION'], playerPosition.x, playerPosition.y);
     game.fillText(emojis['BOMB_COLLISION'], playerPosition.x, playerPosition.y);
     
     if (lives == 0) {
@@ -151,9 +150,7 @@ function levelFailed() {
     }
     
     playerPosition.x = undefined;
-    playerPosition.y = undefined;
-
-    startGame();
+    playerPosition.y = undefined;    
 }
 
 function gameWon() {
